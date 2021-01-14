@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Run test
+    name: Test application
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +14,6 @@ jobs:
         if: github.event.review.state == 'approved'
       - name: Print Dart SDK version
         run: dart --version
-
-      - name: Install dependencies
+    
       - run: flutter pub get
       - run: flutter test
