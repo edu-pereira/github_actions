@@ -19,6 +19,7 @@ jobs:
         with:
           flutter-version: '1.22.4'
       - working-directory: ./github_actions
-      - run: flutter pub get
-      - run: flutter test
-      - run: flutter build apk
+        run: | 
+          flutter pub get
+          flutter test
+          flutter build apk
