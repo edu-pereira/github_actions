@@ -6,10 +6,9 @@ on:
 
 jobs:
   build:
-    if: github.event.review.state == 'approved'
     name: Test application
     runs-on: ubuntu-latest
-
+    if: github.event.review.state == 'approved'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
