@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  installation:
     name: Test application
     runs-on: ubuntu-latest
     if: github.event.review.state == 'approved'
@@ -17,6 +17,12 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '1.22.4'
+  
+  build:
+    needs: [installation]
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
       - working-directory: ./github_actions
         run: | 
           flutter pub get
