@@ -1,9 +1,8 @@
 name: Dart
 
 on:
-  pull_request:
+  workflow_dispatch:
     branches: [ main ]
-    types: [synchronize]
 
 jobs:
   installation:
