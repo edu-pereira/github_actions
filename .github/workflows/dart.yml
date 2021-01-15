@@ -7,7 +7,6 @@ on:
 
 jobs:
   installation:
-    if: github.event.review.state == 'approved' && always()
     name: Test application
     runs-on: ubuntu-latest
     steps:
@@ -18,16 +17,8 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '1.22.4'
-  
-  build-app:
-    name: Build Application
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [installation]
-    steps:
       - working-directory: ./github_actions
         run: | 
           flutter pub get
           flutter test
           flutter build apk
-      
