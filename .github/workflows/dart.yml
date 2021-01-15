@@ -23,5 +23,5 @@ jobs:
           flutter test
           flutter build apk
       - if: github.event.review.state != 'approved'
-        run: exit 1
+      - run: exit 1
 
