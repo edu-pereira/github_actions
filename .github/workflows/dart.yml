@@ -10,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get the count of requested reviewers
-        run: |
-          length=$(echo $requested_reviewers | jq '.[] | select(.state=="APPROVED") | length')
-          echo "length = $length"
+        run: echo '${{ toJson(github.event.pull_request.requested_reviewers) }}' | jq '. | length'
         env:
           requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
 #       -  if: github.event.review.state != 'approved'
