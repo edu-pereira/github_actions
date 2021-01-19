@@ -9,18 +9,24 @@ jobs:
     name: Test application
     runs-on: ubuntu-latest
     steps:
-      -  if: github.event.review.state != 'approved'
-         run: exit 1
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '1.22.4'
-      - working-directory: ./github_actions
-        run: | 
-          flutter analyze
-          flutter pub get
-          flutter test
-          flutter build apk
+      - name: get the count of requested reviewers
+        run: |
+          length=$(echo $requested_reviewers | jq '. | length')
+          echo "length = $length"
+        env:
+          requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
+#       -  if: github.event.review.state != 'approved'
+#          run: exit 1
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-java@v1
+#         with:
+#           java-version: '12.x'
+#       - uses: subosito/flutter-action@v1
+#         with:
+#           flutter-version: '1.22.4'
+#       - working-directory: ./github_actions
+#         run: | 
+#           flutter analyze
+#           flutter pub get
+#           flutter test
+#           flutter build apk
