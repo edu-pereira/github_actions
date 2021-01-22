@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get the count of requested reviewers
-        run: echo '${{ toJson(github.event.pull_request.requested_reviewers) }}'
         env:
           requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
+        run: echo '${{ toJson(github.event.pull_request.requested_reviewers) }}'
       - name: diff files
         run: echo '${{ git diff-tree --no-commit-id --name-only -r ${{ github.sha }} }}'
 #       -  if: github.event.review.state != 'approved'
