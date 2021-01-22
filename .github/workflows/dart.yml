@@ -14,7 +14,7 @@ jobs:
         env:
           requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
       - name: diff files
-        run: echo {{ git diff-tree --no-commit-id --name-only -r ${{ github.sha }} }}'
+        run: echo '${{ git diff-tree --no-commit-id --name-only -r ${{ github.sha }} }}'
 #       -  if: github.event.review.state != 'approved'
 #          run: exit 1
 #       - uses: actions/checkout@v2
