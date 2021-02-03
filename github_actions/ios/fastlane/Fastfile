@@ -15,6 +15,26 @@
 
 default_platform(:ios)
 
+
+desc "Build application in profile"
+lane :build_app_profile do |options|
+  build_number = number_of_commits()
+  Dir.chdir "../.." do
+    sh("flutter", "clean")
+    sh("flutter", "build", "ios", "--profile", "--build-number=#{build_number}")
+  end
+end
+
+desc "Generate IPA file from APP"
+lane :generate_ipa_from_app do
+  Dir.chdir "../../build/ios/iphoneos" do
+    sh("mkdir Payload")
+    sh("mv Runner.app Payload")
+    sh("zip -r Payload.zip Payload")
+    sh("mv Payload.zip Payload.ipa ")
+  end
+end
+
 platform :ios do
   desc "Description of what the lane does"
   lane :custom_lane do
@@ -22,7 +42,8 @@ platform :ios do
   end
   desc "Deploy to firebase distribution as profile"
   lane :profile_firebase_distribution do |options|
-    # build_profile()
+    build_app_profile()
+    generate_ipa_from_app()
     firebase_app_distribution(
       app: options[:DEV_FIREBASE_APP_ID],
       ipa_path: "../build/ios/iphoneos/Payload.ipa",
