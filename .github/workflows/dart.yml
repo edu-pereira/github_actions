@@ -34,4 +34,4 @@ jobs:
       - name: Distribute app with 🔥 App Distribution 🚀
         run: |
           cd ios/fastlane
-          bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:${{ secrets.DEV_FIREBASE_APP_ID }}
+          bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
