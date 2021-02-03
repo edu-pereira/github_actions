@@ -20,7 +20,7 @@ platform :ios do
   lane :build_app_profile do
 #     build_number = number_of_commits()
     sh("pwd")
-    Dir.chdir "../.." do
+    Dir.chdir "../../" do
       sh("flutter", "clean")
       sh("flutter", "build", "ios", "--profile")
     end
