@@ -28,7 +28,9 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.22.6'
-    - run: |
+    - name: Build app
+      run: |
+        cd github_actions
         flutter build ios --profile
         cd build/ios/iphoneos
         mkdir Payload
