@@ -18,15 +18,34 @@ jobs:
   #       run: |
   #         cd android/fastlane
   #         bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:${{ secrets.DEV_FIREBASE_APP_ID }}
-  firebase_deploy_ios:
-    name: Deploy iOS APP to firebase
-    runs-on: macOS-latest
+  deploy:
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install and run xcodegen
-        run: |
-          brew install xcodegen
-          xcodegen generate
-      - name: Distribute app with 🔥 App Distribution 🚀
-        run: |
-          bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
+    - uses: actions/checkout@v1
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '1.22.6'
+    - run: |
+        flutter build ios --profile
+        cd build/ios/iphoneos
+        mkdir Payload
+        mv Runner.app Payload
+        zip -r Payload.zip Payload
+        mv Payload.zip Payload.ipa
+    - name: Distribute app with 🔥 App Distribution 🚀
+      run: |
+        bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
+#   firebase_deploy_ios:
+#     name: Deploy iOS APP to firebase
+#     runs-on: macos-latest
+#     steps:
+#     - uses: actions/checkout@v1
+#     - uses: actions/setup-java@v1
+#       with:
+#         java-version: '12.x'
+#     - name: Distribute app with 🔥 App Distribution 🚀
+#       run: |
+#         bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
