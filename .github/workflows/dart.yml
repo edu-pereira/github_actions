@@ -40,6 +40,7 @@ jobs:
     - name: Distribute app with 🔥 App Distribution 🚀
       run: |
         cd github_actions/ios/fastlane
+        bundle install --path vendor/cache
         bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
 #   firebase_deploy_ios:
 #     name: Deploy iOS APP to firebase
