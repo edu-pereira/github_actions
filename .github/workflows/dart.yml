@@ -37,10 +37,13 @@ jobs:
 #         mv Runner.app Payload
 #         zip -r Payload.zip Payload
 #         mv Payload.zip Payload.ipa
-    - name: Distribute app with 🔥 App Distribution 🚀
+    - name: Install bundle
       run: |
         cd github_actions/ios/fastlane
-        bundle install --path vendor/cache
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - name: Distribute app with 🔥 App Distribution 🚀
+      run:
         bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
 #   firebase_deploy_ios:
 #     name: Deploy iOS APP to firebase
