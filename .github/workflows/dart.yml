@@ -26,10 +26,10 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-      - name: Install and run xcodegen
-        run: |
-          brew install xcodegen
-          xcodegen generate
+#       - name: Install and run xcodegen
+#         run: |
+#           brew install xcodegen
+#           xcodegen generate
       - name: Distribute app with 🔥 App Distribution 🚀
         run: |
           cd ios/fastlane
