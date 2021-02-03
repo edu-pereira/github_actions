@@ -23,13 +23,10 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-#       - name: Install and run xcodegen
-#         run: |
-#           brew install xcodegen
-#           xcodegen generate
+      - name: Install and run xcodegen
+        run: |
+          brew install xcodegen
+          xcodegen generate
       - name: Distribute app with 🔥 App Distribution 🚀
         run: |
           bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
