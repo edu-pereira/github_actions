@@ -25,9 +25,9 @@ jobs:
 #     - uses: actions/setup-java@v1
 #       with:
 #         java-version: '12.x'
-#     - uses: subosito/flutter-action@v1
-#       with:
-#         flutter-version: '1.22.6'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '1.22.6'
 #     - name: Build app
 #       run: |
 #         cd github_actions
