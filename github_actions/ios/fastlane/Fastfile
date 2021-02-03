@@ -17,12 +17,12 @@ default_platform(:ios)
 
 platform :ios do
   desc "Build application in profile"
-  lane :build_app_profile do |options|
-    build_number = number_of_commits()
+  lane :build_app_profile do
+#     build_number = number_of_commits()
     sh("pwd")
     Dir.chdir "../.." do
       sh("flutter", "clean")
-      sh("flutter", "build", "ios", "--profile", "--build-number=#{build_number}")
+      sh("flutter", "build", "ios", "--profile")
     end
   end
 
