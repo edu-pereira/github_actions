@@ -23,7 +23,7 @@ platform :ios do
     Dir.chdir "../../" do
       sh("pwd")
       sh("flutter", "clean")
-      sh("flutter", "build", "ios", "--profile", "--build-number=${build_number}")
+      sh("flutter", "build", "ios", "--profile", "--build-number=#{build_number}")
     end
   end
 
