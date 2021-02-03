@@ -1,9 +1,26 @@
 on: workflow_dispatch
 
 jobs:
-  firebase_deploy_android:
-    name: Deploy Android APP to firebase
-    runs-on: ubuntu-latest
+  # firebase_deploy_android:
+  #   name: Deploy Android APP to firebase
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: 2.6
+  #     - name: Install bundle
+  #       run: |
+  #         cd android/fastlane
+  #         bundle config path vendor/bundle
+  #         bundle install --jobs 4 --retry 3
+  #     - name: Distribute app with 🔥 App Distribution 🚀
+  #       run: |
+  #         cd android/fastlane
+  #         bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:${{ secrets.DEV_FIREBASE_APP_ID }}
+  firebase_deploy_ios:
+    name: Deploy iOS APP to firebase
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -11,10 +28,10 @@ jobs:
           ruby-version: 2.6
       - name: Install bundle
         run: |
-          cd github_actions/android/fastlane
+          cd android/fastlane
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
       - name: Distribute app with 🔥 App Distribution 🚀
         run: |
-          cd github_actions/android/fastlane
-          bundle exec fastlane beta DEV_FIREBASE_APP_ID:1:123456789:android:1233445
+          cd ios/fastlane
+          bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:${{ secrets.DEV_FIREBASE_APP_ID }}
