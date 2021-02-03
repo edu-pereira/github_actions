@@ -28,17 +28,18 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.22.6'
-    - name: Build app
-      run: |
-        cd github_actions
-        flutter build ios --profile
-        cd build/ios/iphoneos
-        mkdir Payload
-        mv Runner.app Payload
-        zip -r Payload.zip Payload
-        mv Payload.zip Payload.ipa
+#     - name: Build app
+#       run: |
+#         cd github_actions
+#         flutter build ios --profile
+#         cd build/ios/iphoneos
+#         mkdir Payload
+#         mv Runner.app Payload
+#         zip -r Payload.zip Payload
+#         mv Payload.zip Payload.ipa
     - name: Distribute app with 🔥 App Distribution 🚀
       run: |
+        cd github_actions/ios/fastlane
         bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:123:123:123
 #   firebase_deploy_ios:
 #     name: Deploy iOS APP to firebase
