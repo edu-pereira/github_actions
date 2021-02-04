@@ -44,6 +44,7 @@ platform :ios do
     generate_ipa_from_app()
     firebase_app_distribution(
       app: options[:DEV_FIREBASE_APP_ID],
+      firebase_cli_token: options[:DEV_FIREBASE_CLI_TOKEN],
       ipa_path: "../build/ios/iphoneos/Payload.ipa",
       groups: "Developers",
       release_notes: options[:RELEASE_NOTES]
