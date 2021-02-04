@@ -21,18 +21,15 @@ platform :android do
     gradle(task: "test")
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
+  lane :build_profile do
+    sh("flutter pub get")
+    sh("flutter build apk --profile")
   end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do |options|
-    puts options[:DEV_FIREBASE_APP_ID]
+    sh(ls)
+    build_profile()
     firebase_app_distribution(
       app: options[:DEV_FIREBASE_APP_ID],
       firebase_cli_token: options[:DEV_FIREBASE_CLI_TOKEN],
