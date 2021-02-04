@@ -15,8 +15,8 @@ jobs:
       - name: Install bundle
         run: |
           cd github_actions/android/fastlane
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundle install --path vendor/bundle
+          bundle install fastlane
       - name: Distribute app with 🔥 App Distribution 🚀
         run: |
           cd github_actions/android/fastlane
