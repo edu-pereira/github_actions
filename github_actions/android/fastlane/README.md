@@ -15,17 +15,22 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
-## iOS
-### ios custom_lane
+## Android
+### android test
 ```
-fastlane ios custom_lane
+fastlane android test
 ```
-Description of what the lane does
-### ios profile_firebase_distribution
+Runs all the tests
+### android beta
 ```
-fastlane ios profile_firebase_distribution
+fastlane android beta
 ```
-Deploy to firebase distribution as profile
+Submit a new Beta Build to Crashlytics Beta
+### android deploy
+```
+fastlane android deploy
+```
+Deploy a new version to the Google Play
 
 ----
 
