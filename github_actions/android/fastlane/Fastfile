@@ -34,4 +34,21 @@ platform :android do
     gradle(task: "clean assembleRelease")
     upload_to_play_store
   end
+  
+  lane :build_profile do
+    sh("flutter pub get")
+    sh("flutter build apk --profile")
+  end
+  
+  desc "Deploy to firebase distribution as profile"
+  lane :profile_firebase_distribution do |options|
+    build_profile()
+    firebase_app_distribution(
+      app: options[:DEV_FIREBASE_APP_ID],
+      firebase_cli_token: options[:DEV_FIREBASE_CLI_TOKEN]
+      apk_path: "../build/app/outputs/flutter-apk/app-profile.apk",
+      groups: "Developers",
+      release_notes: options[:RELEASE_NOTES]
+    )
+  end
 end
