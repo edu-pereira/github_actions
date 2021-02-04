@@ -20,7 +20,7 @@ jobs:
       - name: Distribute app with 🔥 App Distribution 🚀
         run: |
           cd github_actions/android/fastlane
-          bundle exec fastlane add_plugin firebase_app_distribution
+          bundle exec fastlane setup --verbose
           bundle exec fastlane profile_firebase_distribution DEV_FIREBASE_APP_ID:1:617747149569:android:4889c88632afc0ffb42100 DEV_FIREBASE_CLI_TOKEN:1//0h59VztyvJRLICgYIARAAGBESNwF-L9IrWql8pa7h4SfBiTWhG9UqbMNxwF29Ne51jQpFQbedFrSzrrxjn_gvU9GmgymXhE_7O4Y
 #   deploy:
 #     runs-on: macos-latest
