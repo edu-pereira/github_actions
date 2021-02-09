@@ -20,7 +20,7 @@ platform :ios do
   lane :custom_lane do
     Dir.chdir "../.." do
       sh("flutter", "clean")
-      sh("flutter", "build", "ios")
+      sh("flutter", "build", "ios", "--no-codesign")
     end
   end
 end
