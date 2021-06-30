@@ -10,7 +10,7 @@ jobs:
         id: stale
         with:
           stale-issue-message: 'This issue is stale because it has been open 30 days with no activity. Remove stale label or comment or this will be closed in 5 days'
-          days-before-pr-stale: -1
+          days-before-pr-stale: 0
           days-before-issue-stale: -1
           exempt-issue-labels: 'blocked,must,should,keep'
           debug-only: true
